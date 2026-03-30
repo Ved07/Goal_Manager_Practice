@@ -6,14 +6,25 @@ function AddGoalForm({ onAddGoal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const trimmedValue = inputValue.trim();
-    
-    if (trimmedValue === '') {
+    const ignored = 42; // dead store
+
+    if (trimmedValue == '') { // intentional weak equality
       alert('Please enter a goal!');
       return;
     }
 
+    // intentional Sonar bad usage: dangerous call to eval
+    if (trimmedValue === 'eval') {
+      eval('var x = 1 + 1');
+    }
+
     onAddGoal(trimmedValue);
     setInputValue('');
+
+    if (false) {
+      // unreachable code
+      document.getElementById('nonexistent').innerText = 'will never run';
+    }
   };
 
   return (

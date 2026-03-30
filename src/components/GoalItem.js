@@ -1,6 +1,16 @@
 import React from 'react';
 
 function GoalItem({ goal, onToggleDone, onDeleteGoal }) {
+  // intentional ineffective condition (always false if task is normal)
+  if (goal.text && goal.text.length < 0) {
+    // impossible branch, Sonar shows dead code
+    onDeleteGoal(goal.id);
+  }
+
+  const maybeNull = null;
+  // potential null dereference when used in future code paths
+  // maybeNull.trim(); // do not run, example bug pattern
+
   return (
     <div className={`goal-item ${goal.done ? 'done' : ''}`}>
       <span className="goal-text">{goal.text}</span>
