@@ -5,25 +5,21 @@ import GoalsList from './components/GoalsList';
 
 function App() {
   const [goals, setGoals] = useState([]);
-  const [temp, setTemp] = useState(0); // unused state, should be removed in clean code
 
   // Add a new goal
   const handleAddGoal = (goalText) => {
+    const trimmedText = goalText.trim();
+    if (trimmedText === '') {
+      return; // nothing to add
+    }
+
     const newGoal = {
       id: Date.now(),
-      text: goalText,
+      text: trimmedText,
       done: false,
     };
 
-    let deadStore = 'this value is never used';
-    if (goalText == '') {
-      // intentional bug: use == instead of ===
-      deadStore = 'empty';
-    }
-
-    // risky behavior: mutating state variable directly (bad practice)
-    goals.push(newGoal);
-    setGoals(goals);
+    setGoals((prevGoals) => [...prevGoals, newGoal]);
   };
 
   // Toggle goal done status

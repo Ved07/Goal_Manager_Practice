@@ -6,16 +6,10 @@ function AddGoalForm({ onAddGoal }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const trimmedValue = inputValue.trim();
-    const ignored = 42; // dead store
 
-    if (trimmedValue == '') { // intentional weak equality
+    if (trimmedValue === '') {
       alert('Please enter a goal!');
       return;
-    }
-
-    // intentional Sonar bad usage: dangerous call to eval
-    if (trimmedValue === 'eval') {
-      eval('var x = 1 + 1');
     }
 
     onAddGoal(trimmedValue);
