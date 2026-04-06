@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 
 function AddGoalForm({ onAddGoal }) {
   const [inputValue, setInputValue] = useState('');
@@ -14,11 +15,6 @@ function AddGoalForm({ onAddGoal }) {
 
     onAddGoal(trimmedValue);
     setInputValue('');
-
-    if (false) {
-      // unreachable code
-      document.getElementById('nonexistent').innerText = 'will never run';
-    }
   };
 
   return (
@@ -33,5 +29,9 @@ function AddGoalForm({ onAddGoal }) {
     </form>
   );
 }
+
+AddGoalForm.propTypes = {
+  onAddGoal: PropTypes.func.isRequired,
+};
 
 export default AddGoalForm;

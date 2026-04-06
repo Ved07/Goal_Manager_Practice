@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import GoalItem from './GoalItem';
 
 function GoalsList({ goals, onToggleDone, onDeleteGoal }) {
@@ -23,5 +24,17 @@ function GoalsList({ goals, onToggleDone, onDeleteGoal }) {
     </div>
   );
 }
+
+GoalsList.propTypes = {
+  goals: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      text: PropTypes.string.isRequired,
+      done: PropTypes.bool.isRequired,
+    })
+  ).isRequired,
+  onToggleDone: PropTypes.func.isRequired,
+  onDeleteGoal: PropTypes.func.isRequired,
+};
 
 export default GoalsList;

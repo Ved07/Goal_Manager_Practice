@@ -1,0 +1,5 @@
+1. 'onAddGoal' is missing in props validation
+2.This always evaluates to falsy. Consider refactoring this code. 
+3.'onToggleDone' is missing in props validation 
+4.goal' is missing in props validation
+5.'onDeleteGoal' is missing in props validation
